@@ -1,0 +1,18 @@
+<view class="available">
+  <view class="name">自习室1</view>
+  <view class="right">
+    <view class="number">12/24</view>
+  </view>
+</view>
+<view class="full">
+  <view class="name">自习室2</view>
+  <view class="right">
+    <view class="number">20/20</view>
+  </view>
+</view>
+<view class="available">
+  <view class="name">自习室3</view>
+  <view class="right">
+    <view class="number">34/40</view>
+  </view>
+</view>

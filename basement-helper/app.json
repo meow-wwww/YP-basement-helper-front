@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/appointment/sheet",
+    "pages/appointment/timetable",
+    "pages/credit/credit",
+    "pages/appointment/appointment",
+    "pages/me/me",
+    "pages/study-hall/study-hall",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#ff6a6a",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/cat.jpg",
+        "selectedIconPath": "images/cat.jpg"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我",
+        "iconPath": "images/cat.jpg",
+        "selectedIconPath": "images/cat.jpg"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "地下室使用助手",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
