@@ -1,5 +1,17 @@
 /**index.wxss**/
 /**************************************/
+.all-wrap{
+  height: 100%;
+}
+
+.head-wrap{
+  height: 478rpx;
+}
+.cover{
+  width:100%;
+  height:434rpx;
+}
+
 .greet-wrap{
   height: 208rpx;
 }
@@ -24,7 +36,7 @@
 }
 .buttoncard1{
   background-color: rgb(253, 253, 253);
-  margin: 0rpx 15rpx 20rpx 30rpx;
+  margin: 20rpx 15rpx 20rpx 30rpx;
   word-break:break-all;
   border-color: rgb(253, 253, 253);
   box-shadow:2rpx 2rpx 2rpx 2rpx rgb(201, 201, 201);
@@ -35,7 +47,7 @@
 }
 .buttoncard2{
   background-color: rgb(253, 253, 253);
-  margin: 0rpx 30rpx 20rpx 15rpx;
+  margin: 20rpx 30rpx 20rpx 15rpx;
   word-break:break-all;
   border-color: rgb(253, 253, 253);
   box-shadow:2rpx 2rpx 2rpx 2rpx rgb(201, 201, 201);
