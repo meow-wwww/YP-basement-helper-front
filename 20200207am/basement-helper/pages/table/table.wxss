@@ -1,0 +1,39 @@
+/* pages/table/table.wxss */
+table{
+  border:1px solid black;
+  border-right:0;
+  border-bottom: 0;
+  margin-left: 3%;
+}
+.table_head{
+  width:120%;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td{
+  padding: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align: center;
+  width: 100%;
+}
+.th2,.td2{
+  width: 10%;
+
+}
+.th1,.td1{
+  width: 20%;
+}
+.th{
+  font-weight: 800;
+  background-color:firebrick;
+  font-size: 28rpx;
+  color: #330e0e;
+  height: 40px;
+}
+.td{
+  height: 20px;
+  font-size: 10rpx;
+  color: black;
+  background-color: white;
+}

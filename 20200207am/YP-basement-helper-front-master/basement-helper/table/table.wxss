@@ -1,0 +1,35 @@
+/* 表格代码   */
+.table{
+  border:1px solid #dadada;
+  border-right:1rpx;
+  border-bottom: 1rpx;
+  width: 100%;
+}
+.table_head{
+  width:150%;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td{
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  text-align: center;
+  width: 150%;
+}
+.th1,.td1{
+  width:40%;
+}
+.th2,.td2{
+  width: 20%;
+}
+.th{
+  font-weight: 800;
+  background-color:antiquewhite;
+  font-size: 28rpx;
+  color: #330e0e;
+}
+.td{
+  font-size: 20rpx;
+  color: #ec9480;
+}
