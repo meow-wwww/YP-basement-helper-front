@@ -1,8 +1,6 @@
 <!--index.wxml-->
-<view class="all-wrap">
-
-<view class="head-wrap">
-  <image src="/images/cat.jpg" class="cover"></image>
+<view>
+  <image src="/images/fj.png" mode='widthFix'></image>
   <view class="weui-footer" style="font-size:27rpx">(图标)｜地下室使用助手</view>
 </view>
 
@@ -22,14 +20,12 @@
 <view class="button-wrap" style="height:{{(750/screenwidth*windowheight-686)*5/7}}rpx">
 <view class="content">
   <view class="buttoncard1" bindtap="tostudyhall">
-    <image src="/images/cat.jpg" class="buttoncard-images"></image>
+    <image src="/images/zixi.jpg" class="buttoncard-images"></image>
     <view class="buttoncard-words">自习室人数</view>
   </view>
   <view class="buttoncard2" bindtap="toappointment">
-    <image src="/images/cat.jpg" class="buttoncard-images"></image>
+    <image src="/images/yuyue.jpg" class="buttoncard-images"></image>
     <view class="buttoncard-words">预约房间</view>
   </view>
 </view>
-</view>
-
 </view>

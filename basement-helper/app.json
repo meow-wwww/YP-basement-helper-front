@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/table/table",
     "pages/appointment/sheet",
     "pages/appointment/timetable",
     "pages/credit/credit",
     "pages/appointment/appointment",
     "pages/me/me",
     "pages/study-hall/study-hall",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/appiont/appiont"
   ],
   "tabBar": {
     "color": "#666",
@@ -16,14 +18,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/cat.jpg",
-        "selectedIconPath": "images/cat.jpg"
+        "iconPath": "images/zhuye_off.jpg",
+        "selectedIconPath": "images/zhuye_on.jpg"
       },
       {
         "pagePath": "pages/me/me",
         "text": "我",
-        "iconPath": "images/cat.jpg",
-        "selectedIconPath": "images/cat.jpg"
+        "iconPath": "images/wo_off.jpg",
+        "selectedIconPath": "images/wo_on.jpg"
       }
     ]
   },
