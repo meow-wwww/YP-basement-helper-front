@@ -1,0 +1,56 @@
+/* pages/table/table.wxss */
+.text{
+  font-size: 30rpx;
+  justify-self: center; 
+}
+table{
+  border:1px solid black;
+  border-right:0;
+  border-bottom: 0;
+  width: 100%;
+}
+.table_head{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5px;
+ }
+.th,.td{
+  border-bottom: 0.5px solid black;
+  border-right: 0.5px solid black;
+  text-align: center;
+  width: 100%;
+}
+.th2{
+  padding: 0.5px;
+  width:10.5%;
+ }
+.th1{
+   width: 21%;
+}
+.td1{
+   background-color:white;
+  width: 21%;
+}
+.tdr2
+{
+  background-color: green;
+  width: 10.5%;
+}
+.tdl2{
+  background-color:red;
+  width:10.5%;
+}
+.th{
+  font-weight: 800;
+  background-color:white;
+  font-size: 28rpx;
+  color: #330e0e;
+  height: 30px;
+
+}
+.td{
+  height: 20px;
+  font-size: 10rpx;
+  color: black;
+}

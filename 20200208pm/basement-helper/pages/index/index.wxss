@@ -1,5 +1,8 @@
 /**index.wxss**/
 /**************************************/
+.image{
+  width:100%
+}
 .greet-wrap{
   height: 208rpx;
 }
