@@ -1,46 +1,46 @@
 <!--pages/credit/credit.wxml-->
 <view class="page">
-    <view class="page__hd">
-        <view class="weui-cells__title">你最近有2条违规记录</view>
-    </view>
-    <view class="page__bd">
-        <view class="weui-form-preview">
-            <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">违规时间</view>
-                    <view class="weui-form-preview__value">2020年1月5日</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">房间</view>
-                    <view class="weui-form-preview__value">大讨论室</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">违规原因</view>
-                    <view class="weui-form-preview__value">咕了（x</view>
-                </view>
-            </view>   
+  <view class="page__hd">
+    <view class="weui-cells__title">你最近有2条违规记录</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">违规时间</view>
+          <view class="weui-form-preview__value">2020年1月5日</view>
         </view>
-        <view class="weui-form-preview">
-            <view class="weui-form-preview__bd">
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">违规时间</view>
-                    <view class="weui-form-preview__value">2019年12月5日</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">房间</view>
-                    <view class="weui-form-preview__value">小讨论室</view>
-                </view>
-                <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">违规原因</view>
-                    <view class="weui-form-preview__value">咕了（x</view>
-                </view>
-            </view>   
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">房间</view>
+          <view class="weui-form-preview__value">大讨论室</view>
         </view>
-    </view>
-    <view class="page__hd">
-        <view class="weui-cells__title">
-        <icon type="warn" size="17" color="#F43530"></icon>
-        <text>每违约3次将暂停预约服务7天，请遵守使用规定。</text>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">违规原因</view>
+          <view class="weui-form-preview__value">咕咕咕</view>
         </view>
+      </view>
     </view>
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">违规时间</view>
+          <view class="weui-form-preview__value">2019年12月5日</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">房间</view>
+          <view class="weui-form-preview__value">小讨论室</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">违规原因</view>
+          <view class="weui-form-preview__value">咕咕咕</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page__hd">
+    <view class="weui-cells__title">
+      <icon type="warn" size="17" color="#F43530"></icon>
+      <text>每违约3次将暂停预约服务7天，请遵守使用规定。</text>
+    </view>
+  </view>
 </view>

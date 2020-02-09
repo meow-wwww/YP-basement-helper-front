@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    roomlist:[{name:'自习室1',num:12,full:24},
+    {name:'自习室2',num:15,full:15},
+    {name:'自习室3',num:36,full:40}]
   },
 
   /**

@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    
     namelist: [{ message: 'B105 大讨论室' }, { message: 'B205 小讨论室' }, { message: 'B215 小音乐活动室' }, { message: 'B220 放映室' }, { message: 'B222 健身房一号' }, { message: 'B223 健身房二号' }, { message: 'B224 音乐活动室' }, { message: 'B210 乒乓球室' }, { message: 'B212 台球室' }]
+    
+    /*namelist:{}*/
   },
 
   navigateroom:function(options){
@@ -15,10 +18,33 @@ Page({
     })
   },
 
+//获取所有房间信息
+/*
+  requestAllRoom:function(){
+    
+  },
+  */
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    /*
+    wx.request({
+      url: 'http://127.0.0.1:8000/appointment/get-room',
+      method: 'GET',
+      data:null,
+      header:{
+        'content-type':'application/json'
+      },
+      dataType:'json',
+      success: function (res) {
+        this.setData({
+          namelist: res.data
+        })
+      }
+    })
+    */
   },
 
   /**
