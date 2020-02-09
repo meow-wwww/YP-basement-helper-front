@@ -7,7 +7,9 @@
     "pages/appointment/appointment",
     "pages/me/me",
     "pages/study-hall/study-hall",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/rules/rules",
+    "pages/myall/myall"
   ],
   "tabBar": {
     "color": "#666",

@@ -1,26 +1,18 @@
-// pages/appointment/sheet.js
+// pages/rules/rules.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    roomname:'',
-    isAgree: false
+
   },
 
-  bindAgreeChange: function (e) {
-    this.setData({
-      isAgree: !!e.detail.value.length
-    });
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      roomname: decodeURI(options.name)
-    })
+
   },
 
   /**

@@ -10,7 +10,8 @@
     <view>
       <text decode="{{true}}" class="inform-normal">&nbsp;&nbsp;&nbsp;&nbsp;你有</text>
       <text class="inform-mark">3</text>
-      <text class="inform-normal">条待进行的预约</text>
+      <text class="inform-normal">条</text>
+      <navigator class="weui-agree__link" url="/pages/myall/myall">待进行的预约</navigator>
     </view>
     <text decode="{{true}}" class="inform-normal">&nbsp;&nbsp;&nbsp;&nbsp;最近一条为    </text>
     <text class="inform-mark">3月14日9:00-10:00大讨论室</text>

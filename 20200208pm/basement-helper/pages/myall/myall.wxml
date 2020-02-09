@@ -1,0 +1,28 @@
+<!--pages/myall/myall.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">房间</view>
+          <view class="weui-form-preview__value">大讨论室</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">日期</view>
+          <view class="weui-form-preview__value">2020年1月5日</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">时间</view>
+          <view class="weui-form-preview__value">9:00-10:00</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">用途</view>
+          <view class="weui-form-preview__value">？？？？？</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="cancelAppointment">取消预约</button>
+      </view>
+    </view>
+  </view>
+</view>

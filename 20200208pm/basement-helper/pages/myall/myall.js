@@ -1,26 +1,26 @@
-// pages/appointment/sheet.js
+// pages/myall/myall.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    roomname:'',
-    isAgree: false
+
   },
 
-  bindAgreeChange: function (e) {
-    this.setData({
-      isAgree: !!e.detail.value.length
+  cancelAppointment:function(options){
+    wx.showToast({
+      title: '已取消预约',
+      icon: 'success',
+      duration: 3000
     });
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      roomname: decodeURI(options.name)
-    })
+
   },
 
   /**

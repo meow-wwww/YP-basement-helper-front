@@ -9,6 +9,13 @@ Page({
     roomname:''
   },
 
+  fillTheSheet:function(options){
+    var d = options.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/appointment/sheet?name='+encodeURI(d.paraname),
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
