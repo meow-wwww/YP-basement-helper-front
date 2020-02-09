@@ -5,14 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    namelist: [{ message: 'B105 大讨论室' }, { message: 'B205 小讨论室' }, { message: 'B215 小音乐活动室' }, { message: 'B220 放映室' }, { message: 'B222 健身房一号' }, { message: 'B223 健身房二号' }, { message: 'B224 音乐活动室' }, { message: 'B210 乒乓球室' }, { message: 'B212 台球室' }]
+  },
 
+  navigateroom:function(options){
+    var d = options.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/table/table?name=' + encodeURI(d.paraname),
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**

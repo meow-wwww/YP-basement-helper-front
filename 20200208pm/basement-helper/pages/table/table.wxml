@@ -1,5 +1,5 @@
 <!--pages/table/table.wxml-->
-<text class='text1'>****室预约</text>
+<text class='text1'>{{roomname}}</text>
 
 <navigator url="/pages/appiont/appiont">
 <button class="button1">预约</button>
