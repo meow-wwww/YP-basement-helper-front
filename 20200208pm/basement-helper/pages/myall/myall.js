@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    appointmentlist: [{ roomname: '大讨论室', date: 20200105, starttime: 9, endtime: 10, usage: '?????' }, { roomname: '小讨论室', date: 20200106, starttime: 14, endtime: 15, usage: '?????' }]
   },
 
   cancelAppointment:function(options){
