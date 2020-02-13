@@ -1,27 +1,31 @@
 <!--pages/myall/myall.wxml-->
 <view class="page">
   <view class="page__bd">
-    <view class="weui-form-preview" wx:for="{{appointmentlist}}">
+    <view class="weui-form-preview" wx:for="{{me.appointmentlist.data}}">
       <view class="weui-form-preview__bd">
         <view class="weui-form-preview__item">
           <view class="weui-form-preview__label">房间</view>
-          <view class="weui-form-preview__value">{{item.roomname}}</view>
+          <view class="weui-form-preview__value">{{item.Rtitle}}</view>
         </view>
-        <view class="weui-form-preview__item">
+<!--      <view class="weui-form-preview__item">
           <view class="weui-form-preview__label">日期</view>
           <view class="weui-form-preview__value">{{item.date}}</view>
+        </view> -->
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">开始时间</view>
+          <view class="weui-form-preview__value">{{item.Astart}}</view>
         </view>
         <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">时间</view>
-          <view class="weui-form-preview__value">{{item.starttime}}:00-{{item.endtime}}:00</view>
+          <view class="weui-form-preview__label">结束时间</view>
+          <view class="weui-form-preview__value">{{item.Afinish}}</view>
         </view>
         <view class="weui-form-preview__item">
           <view class="weui-form-preview__label">用途</view>
-          <view class="weui-form-preview__value">{{item.usage}}</view>
+          <view class="weui-form-preview__value">好像目前还写不成???</view>
         </view>
       </view>
       <view class="weui-form-preview__ft">
-        <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="cancelAppointment">取消预约</button>
+        <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="cancelAppointment" data-delindex="{{index}}">取消预约</button>
       </view>
     </view>
   </view>

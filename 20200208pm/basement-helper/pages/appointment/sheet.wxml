@@ -7,7 +7,7 @@
         <view class="weui-label">使用人</view>
       </view>
       <view class="weui-cell__bd">
-        <view class="weui-label">某某某</view>
+        <view class="weui-label">{{me.name}}</view>
       </view>
     </view>
     <view class="weui-cell">
@@ -18,6 +18,7 @@
         <view class="weui-label">{{roomname}}</view>
       </view>
     </view>
+    <!--
     <view class="weui-cell">
       <view class="weui-cell__hd">
         <view class="weui-label">手机号</view>
@@ -26,6 +27,7 @@
         <input class="weui-input" />
       </view>
     </view>
+    -->
   </view>
 
   <view class="weui-cells__title">时间</view>
@@ -45,8 +47,8 @@
         <view class="weui-label">开始时间</view>
       </view>
       <view class="weui-cell__bd">
-        <picker mode="time" value="{{time}}" start="08:00" end="21:45" bindchange="bindTimeChange">
-          <view class="weui-input">{{time}}</view>
+        <picker mode="time" value="{{startTime}}" start="08:00" end="21:45" bindchange="bindTimeChangeStart">
+          <view class="weui-input">{{startTime}}</view>
         </picker>
       </view>
     </view>
@@ -55,14 +57,15 @@
         <view class="weui-label">结束时间</view>
       </view>
       <view class="weui-cell__bd">
-        <picker mode="time" value="{{time}}" start="09:01" end="21:45" bindchange="bindTimeChange">
-          <view class="weui-input">{{time}}</view>
+        <picker mode="time" value="{{endTime}}" start="09:01" end="21:45" bindchange="bindTimeChangeFinish">
+          <view class="weui-input">{{endTime}}</view>
         </picker>
       </view>
     </view>
   </view>
   <view class="weui-cells__tips">只能进行未来七天的预约</view>
 
+  <!--
   <view class="weui-cells__title"></view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell ">
@@ -71,7 +74,9 @@
       </view>
     </view>
   </view>
+  -->
 
+  <!--
   <view class="weui-cells__title"></view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
@@ -80,6 +85,7 @@
       </view>
     </view>
   </view>
+  -->
 
   <checkbox-group bindchange="bindAgreeChange">
     <label class="weui-agree" for="weuiAgree">
@@ -95,6 +101,6 @@
   </checkbox-group>
 
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+    <button class="weui-btn" type="primary" bindtap="checkAndSubmit">确定</button>
   </view>
 </view>

@@ -1,11 +1,12 @@
 // pages/myall/myall.js
-Page({
+var app = getApp()
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    appointmentlist: [{ roomname: '大讨论室', date: 20200105, starttime: 9, endtime: 10, usage: '?????' }, { roomname: '小讨论室', date: 20200106, starttime: 14, endtime: 15, usage: '?????' }]
+    me:{}
   },
 
   cancelAppointment:function(options){
@@ -13,14 +14,23 @@ Page({
       title: '已取消预约',
       icon: 'success',
       duration: 3000
-    });
+    })
+    var d = options.currentTarget.dataset
+    this.data.me.appointmentlist.data.splice(d.delindex, 1)    
+    app.globalData.me.appointmentlist.data = this.data.me.appointmentlist.data
+    this.setData({
+      me: app.globalData.me
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      me: app.globalData.me
+    })
+    console.log(this.data.me)
   },
 
   /**
@@ -34,7 +44,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      me: app.globalData.me
+    })
   },
 
   /**

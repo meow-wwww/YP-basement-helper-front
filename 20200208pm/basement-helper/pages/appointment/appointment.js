@@ -5,10 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    /*
-    namelist: [{ message: 'B105 大讨论室' }, { message: 'B205 小讨论室' }, { message: 'B215 小音乐活动室' }, { message: 'B220 放映室' }, { message: 'B222 健身房一号' }, { message: 'B223 健身房二号' }, { message: 'B224 音乐活动室' }, { message: 'B210 乒乓球室' }, { message: 'B212 台球室' }]
-    */
-    namelist:[]
+    namelist:{}
   },
 
   navigateroom:function(options){
@@ -18,25 +15,17 @@ Page({
     })
   },
 
-//获取所有房间信息
-/*
-  requestAllRoom:function(){
-    
-  },
-  */
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //创建房间
-    /*
+    //add a new room
     wx.request({
       url: 'http://39.107.70.176:9000/appointment/add-room',
       method: 'POST',
       data: {
-        'Rid':'1',
-        'Rtitle':'测试房间',
+        'Rid':'B333',
+        'Rtitle':'测试房间1',
         'Rmin':'5',
         'Rmax':'10',
         'Rstatus':'0'
@@ -49,8 +38,7 @@ Page({
         console.log(res.data)
       }
     })
-    */
-    var that = this
+    var that = this    
     //获取房间
     wx.request({
       url: 'http://39.107.70.176:9000/appointment/get-room',
@@ -67,6 +55,16 @@ Page({
         console.log(that.data)
       }
     })
+
+    //预约
+    /*
+    wx.request({
+      url: 'http://39.107.70.176:9000/appointment/add-appoint',
+      method:'POST',
+      data:{
+      }
+    })
+    */
   },
 
   /**

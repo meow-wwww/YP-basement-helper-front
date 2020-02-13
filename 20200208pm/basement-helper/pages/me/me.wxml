@@ -1,7 +1,7 @@
 <!--pages/me/me.wxml-->
 <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-    <text>{{userInfo.nickName}}</text>
+    <text>{{me.name}}</text>
 </view>
 
 <view class="weui-cells weui-cells_after-title">
