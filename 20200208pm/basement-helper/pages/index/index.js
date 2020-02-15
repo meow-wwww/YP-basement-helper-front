@@ -8,6 +8,7 @@ Page({
     me:{},//姓名学号预约信息
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    earliest:{}
   },
 
 //跳转到对应自习室的sheet页面
@@ -34,6 +35,7 @@ Page({
         userInfo: userInfo
       })
     })
+    
     //同步个人信息
     that.setData({
       me:app.globalData.me

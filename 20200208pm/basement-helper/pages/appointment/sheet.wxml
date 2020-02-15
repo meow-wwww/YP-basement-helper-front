@@ -15,7 +15,7 @@
         <view class="weui-label">房间</view>
       </view>
       <view class="weui-cell__bd">
-        <view class="weui-label">{{roomname}}</view>
+        <view class="weui-label">{{roomid}} {{roomname}}</view>
       </view>
     </view>
     <!--
@@ -65,27 +65,25 @@
   </view>
   <view class="weui-cells__tips">只能进行未来七天的预约</view>
 
-  <!--
   <view class="weui-cells__title"></view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell ">
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="用途(会公开展示)" />
+        <input class="weui-input" placeholder="用途(必填)" bindinput="inputusage"/>
       </view>
     </view>
   </view>
-  -->
 
-  <!--
+<!--
   <view class="weui-cells__title"></view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">
-        <textarea class="weui-textarea" placeholder="备注" style="height: 3.3em" />
+        <textarea class="weui-textarea" placeholder="备注(可不填)" style="height: 3.3em" />
       </view>
     </view>
   </view>
-  -->
+-->
 
   <checkbox-group bindchange="bindAgreeChange">
     <label class="weui-agree" for="weuiAgree">
@@ -101,6 +99,6 @@
   </checkbox-group>
 
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="checkAndSubmit">确定</button>
+    <button class="weui-btn" type="primary" bindtap="checkAndSubmit" disabled="{{(!isAgree)||startBlank||endBlank||(startTime>=endTime)||(iusage=='')}}">确定</button>
   </view>
 </view>

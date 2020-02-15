@@ -21,7 +21,7 @@
         </view>
         <view class="weui-form-preview__item">
           <view class="weui-form-preview__label">用途</view>
-          <view class="weui-form-preview__value">好像目前还写不成???</view>
+          <view class="weui-form-preview__value">{{item.Ausage}}</view>
         </view>
       </view>
       <view class="weui-form-preview__ft">
