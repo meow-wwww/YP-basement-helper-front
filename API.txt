@@ -62,7 +62,7 @@ url 地址：http://39.107.70.176:9000/appointment/get-appoint
 ]
 
 
-2. 获取所有房间✅
+2. 获取所有房间
 
 url 地址：http://39.107.70.176:9000/appointment/get-room
 方法：GET

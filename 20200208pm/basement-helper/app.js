@@ -49,10 +49,10 @@ App({
 
   globalData: {
     userInfo: null,
-    me:{
+    me:{//用户信息
       name:'王霄钰',
       id:1800017830,
-      appointmentlist:{}
+      appointmentlist:{}//预约列表
     }
   }
 })

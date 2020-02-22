@@ -5,9 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    namelist: {}
+    namelist: {}//房间列表
   },
 
+  //点击房间 进入对应房间的时间表页面
   navigateroom: function(options) {
     var d = options.currentTarget.dataset;
     wx.navigateTo({
@@ -36,16 +37,6 @@ Page({
         console.log(that.data)
       }
     })
-
-    //预约
-    /*
-    wx.request({
-      url: 'http://39.107.70.176:9000/appointment/add-appoint',
-      method:'POST',
-      data:{
-      }
-    })
-    */
   },
 
   /**
