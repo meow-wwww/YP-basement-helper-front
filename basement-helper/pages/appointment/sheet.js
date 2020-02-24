@@ -17,7 +17,6 @@ Page({
 
     iusage: '',
 
-
     objectMultiArray: [
       [ { id: 0, name: '9'  },
         { id: 1, name: '10' },
@@ -42,19 +41,39 @@ Page({
     ],
     multiIndexStart: [0, 0],
     multiIndexFinish: [0, 0],
+    timeReverse:true,//开始时间>=结束时间？
+    timeGap:0 //时间间隔
   },
 
   bindMultiPickerChangeStart: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndexStart: e.detail.value
+    })
+    var timeReverseLocal=false;
+    if (this.data.multiIndexStart[0] > this.data.multiIndexFinish[0])
+      timeReverseLocal = true;
+    else if (this.data.multiIndexStart[0] == this.data.multiIndexFinish[0]){
+      if (this.data.multiIndexStart[1] >= this.data.multiIndexFinish[1])
+        timeReverseLocal = true;
+    }
+    this.setData({
+      timeReverse:timeReverseLocal
     })
   },
   
   bindMultiPickerChangeFinish: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndexFinish: e.detail.value
+    })
+    var timeReverseLocal = false;
+    if (this.data.multiIndexStart[0] > this.data.multiIndexFinish[0])
+      timeReverseLocal = true;
+    else if (this.data.multiIndexStart[0] == this.data.multiIndexFinish[0]) {
+      if (this.data.multiIndexStart[1] >= this.data.multiIndexFinish[1])
+        timeReverseLocal = true;
+    }
+    this.setData({
+      timeReverse: timeReverseLocal
     })
   },
 

@@ -68,17 +68,6 @@
     </view>
   </view>
 
-  <!--
-  <view class="weui-cells__title"></view>
-  <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell">
-      <view class="weui-cell__bd">
-        <textarea class="weui-textarea" placeholder="备注(可不填)" style="height: 3.3em" />
-      </view>
-    </view>
-  </view>
--->
-
   <checkbox-group bindchange="bindAgreeChange">
     <label class="weui-agree" for="weuiAgree">
       <view class="weui-agree__text">
@@ -93,6 +82,6 @@
   </checkbox-group>
 
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="checkAndSubmit" disabled="{{(!isAgree)||startBlank||endBlank||(startTime>=endTime)||(iusage=='')}}">确定</button>
+    <button class="weui-btn" type="primary" bindtap="checkAndSubmit" disabled="{{(!isAgree)||timeReverse||(iusage=='')}}">确定</button>
   </view>
 </view>
