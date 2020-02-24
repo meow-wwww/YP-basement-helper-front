@@ -1,8 +1,6 @@
 <!--index.wxml-->
-<view>
-  <image src="/images/fj.png" class='image' mode='aspectFit'></image>
-  <view class="weui-footer" style="font-size:27rpx">(图标)｜地下室使用助手</view>
-</view>
+<image src="/images/fj.png" class='image'></image>
+<view class="weui-footer" style="font-size:27rpx">(图标)｜地下室使用助手</view>
 
 <view class="greet-wrap">
   <view class="textcard">
