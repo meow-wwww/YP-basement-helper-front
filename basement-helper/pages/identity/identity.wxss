@@ -1,0 +1,50 @@
+.image{
+  width:100%;
+}
+.log-in{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.explain{
+  display: block;
+  margin: 8px 0;
+  color:gray;
+  font-size: 14px;
+}
+.form-wrap{
+  border-top:1px solid #eee;
+}
+.flex-wrap{
+  display: flex;
+  align-items: center;
+  border-top:1px solid ;
+  flex-direction: row;
+}
+.input-wrap{
+  background-color: white;
+  border-bottom:1px solid #eee;
+  margin:0 -12px;
+  height:46px;
+  line-height: 46px;
+  padding: 0 12px;
+}
+.label{
+  color:#999;
+  width:1.5cm;
+  margin :0 12px;
+}
+.account-info-input{
+  font-size: 18px;
+  line-height: 100%;
+  width:100%;
+}
+.mysubmit{
+  width:100%;
+  margin-bottom: 5px;
+}
+.wx{
+  width: 100%;
+}

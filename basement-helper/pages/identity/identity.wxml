@@ -1,0 +1,25 @@
+<!--pages/identity/identity.wxml-->
+<view>
+  <image src="/images/background.jpg" class='image' mode='aspectFit'></image>
+</view>
+<form bindsubmit='Getsubmit'>
+  <view class='log-in'>
+    <text class='explain'>请输入您的姓名和学号</text>
+    <view class="form-wrap">
+      <view class='flex-wrap input-wrap'>
+        <text class="label">姓名</text>
+        <input value='' type='text'  name='Getname' class='account-info-input' />
+      </view>
+      <view class='flex-wrap input-wrap'>
+        <text class="label">学号</text>
+        <input value='' type='number' name='Getnumber' class='account-info-input' />
+      </view>
+    </view>
+    <view>
+      <text class="explain">地下室助手仅限元培学院学生使用</text>
+      <button form-type='submit' class="mysubmit" type='primary'>登录</button>
+      <button open-type='getUserInfo' bindgetuserinfo=" " class='wx' type='primary'>微信登陆</button>
+    </view>
+
+  </view>
+</form>

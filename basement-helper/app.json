@@ -1,5 +1,6 @@
 {
   "pages": [
+  "pages/identity/identity",
     "pages/index/index",
     "pages/appointment/table",
     "pages/appointment/sheet",
