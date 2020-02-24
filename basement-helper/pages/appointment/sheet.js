@@ -7,8 +7,7 @@ Page({
    */
   data: {
     date: "2020-04-01",
-    startTime: "09:00",
-    endTime: "10:00",
+    
     startBlank: false,
     endBlank: false,
     roomname: '',
@@ -16,25 +15,53 @@ Page({
     isAgree: false,
     me: {},
 
-    istart: '', //完好格式
-    ifinish: '', //完好格式
-    iusage: ''
+    iusage: '',
+
+
+    objectMultiArray: [
+      [ { id: 0, name: '9'  },
+        { id: 1, name: '10' },
+        { id: 2, name: '11' },
+        { id: 3, name: '12' },
+        { id: 4, name: '13' },
+        { id: 5, name: '14' },
+        { id: 6, name: '15' },
+        { id: 7, name: '16' },
+        { id: 8, name: '17' },
+        { id: 9, name: '18' },
+        { id: 10, name: '19' },
+        { id: 11, name: '20' },
+        { id: 12, name: '21' },
+        { id: 13, name: '22' }
+      ],
+      [ { id: 0, name: '00' },
+        { id: 1, name: '15' },
+        { id: 2, name: '30' },
+        { id: 3, name: '45' },
+      ]
+    ],
+    multiIndexStart: [0, 0],
+    multiIndexFinish: [0, 0],
   },
 
-  //日期、时间选择器绑定的函数
+  bindMultiPickerChangeStart: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      multiIndexStart: e.detail.value
+    })
+  },
+  
+  bindMultiPickerChangeFinish: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      multiIndexFinish: e.detail.value
+    })
+  },
+
+  //日期选择器绑定的函数
   bindDateChange: function(e) {
     this.setData({
       date: e.detail.value
-    })
-  },
-  bindTimeChangeStart: function(e) {
-    this.setData({
-      startTime: e.detail.value
-    })
-  },
-  bindTimeChangeFinish: function(e) {
-    this.setData({
-      endTime: e.detail.value
     })
   },
 
