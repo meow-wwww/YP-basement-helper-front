@@ -17,9 +17,10 @@
     </view>
     <view>
       <text class="explain">地下室助手仅限元培学院学生使用</text>
-      <button form-type='submit' class="mysubmit" type='primary'>登录</button>
-      <button open-type='getUserInfo' bindgetuserinfo=" " class='wx' type='primary'>微信登陆</button>
+      <button form-type='submit' class="mysubmit" type='primary' bindtap="Topage">登录</button>
+      <button open-type='getUserInfo' bindgetuserinfo="Getuser" class='wx' type='primary' bindtap="Topage" >微信登录</button>
     </view>
-
   </view>
+   
+
 </form>

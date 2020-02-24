@@ -40,6 +40,12 @@ Page({
     that.setData({
       me:app.globalData.me
     })
+
+    if (app.globalData.me.id==null){
+      wx.navigateTo({
+        url: '/pages/identity/identity',
+      })
+    }
   },
 
   onShow: function () {

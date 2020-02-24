@@ -1,7 +1,7 @@
 {
   "pages": [
-  "pages/identity/identity",
     "pages/index/index",
+    "pages/identity/identity",
     "pages/appointment/table",
     "pages/appointment/sheet",
     "pages/credit/credit",

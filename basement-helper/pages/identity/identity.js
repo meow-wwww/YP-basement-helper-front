@@ -1,4 +1,6 @@
 // pages/identity/identity.js
+var app = getApp()
+
 Page({
 
   /**
@@ -7,9 +9,26 @@ Page({
   data: {
 
   },
+  Topage:function()
+  {
+    app.globalData.me.id = 'done'
+    wx.navigateBack()
+  },
   Getsubmit: function(e) {
     var val=e.detail.value;
-    console.log('user',val)
+    console.log('user',val);
+  },
+  Getuser:function()
+  {
+    wx.getUserInfo({
+      success:function(res)
+      {
+        console.log(res.userInfo)
+        console.log("头像："+res.userInfo.avatarUrl)
+        console.log("昵称："+res.userInfo.nickName)
+        console.log("性别："+res.userInfo.gender)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

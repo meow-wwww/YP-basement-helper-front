@@ -50,8 +50,8 @@ App({
   globalData: {
     userInfo: null,
     me:{//用户信息
-      name:'王霄钰',
-      id:1800017830,
+      name:'',
+      id:null,
       appointmentlist:{}//预约列表
     }
   }
