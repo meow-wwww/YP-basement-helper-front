@@ -23,24 +23,12 @@
   <view class="weui-cells__title">时间</view>
   <view class="weui-cells weui-cells_after-title">
 
-    <!--
     <view class="weui-cell ">
       <view class="weui-cell__hd">
         <view class="weui-label">预约日期</view>
       </view>
       <view class="weui-cell__bd">
-        <picker mode="date" value="{{date}}" start="2020-03-01" end="2020-07-01" bindchange="bindDateChange">
-          <view class="weui-input">{{date}}</view>
-        </picker>
-      </view>
-    </view>
-    -->
-    <view class="weui-cell ">
-      <view class="weui-cell__hd">
-        <view class="weui-label">预约日期</view>
-      </view>
-      <view class="weui-cell__bd">
-        <picker mode="selector" value="{{dateIndex}}" range="{{dateArray}}" range-key="{{'name'}}" bindchange="bindDateChange2">
+        <picker mode="selector" value="{{dateIndex}}" range="{{dateArray}}" range-key="{{'name'}}" bindchange="bindDateChange">
           <view class="weui-input">{{dateArray[dateIndex].name}}</view>
         </picker>
       </view>
@@ -94,6 +82,6 @@
   </checkbox-group>
 
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="checkAndSubmit" disabled="{{(!isAgree)||timeReverse||(iusage=='')}}">确定</button>
+    <button class="weui-btn" type="primary" bindtap="checkAndSubmit" disabled="{{(!isAgree)||timeReverse||timeTooLong||(iusage=='')}}">确定</button>
   </view>
 </view>

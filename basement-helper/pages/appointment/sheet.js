@@ -15,10 +15,9 @@ Page({
       month: new Date().getMonth() + 1,//月
       day: new Date().getDate()//日
     },
+    iusage: '',//输入的用途
 
-    iusage: '',
-
-    dateArray:[
+    dateArray:[//id没啥用
       { id: 1, name: '' },
       { id: 2, name: '' },
       { id: 3, name: '' },
@@ -30,33 +29,34 @@ Page({
     dateIndex: 0,
 
     objectMultiArray: [
-      [ { id: '09', name: '9时'  },
-        { id: '10', name: '10时' },
-        { id: '11', name: '11时' },
-        { id: '12', name: '12时' },
-        { id: '13', name: '13时' },
-        { id: '14', name: '14时' },
-        { id: '15', name: '15时' },
-        { id: '16', name: '16时' },
-        { id: '17', name: '17时' },
-        { id: '18', name: '18时' },
-        { id: '19', name: '19时' },
-        { id: '20', name: '20时' },
-        { id: '21', name: '21时' },
-        { id: '22', name: '22时' }
+      [ { num: 9, id: '09', name: '9时'  },
+        { num: 10, id: '10', name: '10时' },
+        { num: 11, id: '11', name: '11时' },
+        { num: 12, id: '12', name: '12时' },
+        { num: 13, id: '13', name: '13时' },
+        { num: 14, id: '14', name: '14时' },
+        { num: 15, id: '15', name: '15时' },
+        { num: 16, id: '16', name: '16时' },
+        { num: 17, id: '17', name: '17时' },
+        { num: 18, id: '18', name: '18时' },
+        { num: 19, id: '19', name: '19时' },
+        { num: 20, id: '20', name: '20时' },
+        { num: 21, id: '21', name: '21时' },
+        { num: 22, id: '22', name: '22时' }
       ],
-      [ { id: '00', name: '00分' },
-        { id: '15', name: '15分' },
-        { id: '30', name: '30分' },
-        { id: '45', name: '45分' },
+      [ { num: 0, id: '00', name: '00分' },
+        { num: 1, id: '15', name: '15分' },
+        { num: 2, id: '30', name: '30分' },
+        { num: 3, id: '45', name: '45分' },
       ]
     ],
     multiIndexStart: [0, 0],
     multiIndexFinish: [0, 0],
-    timeReverse:true,//开始时间>=结束时间？
-    timeGap:0 //时间间隔
+    timeReverse:true,//开始时间>=结束时间？//仅用于按钮的disable
+    timeTooLong: false,//预约时长>3h?//仅用于按钮的disable
   },
 
+  //设置开始时间
   bindMultiPickerChangeStart: function(e) {
     this.setData({
       multiIndexStart: e.detail.value
@@ -71,8 +71,37 @@ Page({
     this.setData({
       timeReverse:timeReverseLocal
     })
+    if(timeReverseLocal){
+      wx.showToast({
+        title: '开始时间必须早于结束时间',
+        icon:'none',
+        duration:3000
+      })
+    }
+    else{
+      //考察是否时间过长
+      var endHour = this.data.objectMultiArray[0][this.data.multiIndexStart[0]].num+3;
+      var endMinute = this.data.objectMultiArray[1][this.data.multiIndexStart[1]].num;
+      if(!((this.data.objectMultiArray[0][this.data.multiIndexFinish[0]].num<endHour)||(
+        this.data.objectMultiArray[0][this.data.multiIndexFinish[0]].num == endHour&&this.data.objectMultiArray[1][this.data.multiIndexFinish[1]].num<=endMinute))){
+        this.setData({
+          timeTooLong:true
+        })
+        wx.showToast({
+          title: '预约时长不得超过3小时',
+          icon: 'none',
+          duration: 3000
+        })
+      }
+      else{
+        this.setData({
+          timeTooLong: false
+        })
+      }
+    }
   },
   
+  //设置结束时间
   bindMultiPickerChangeFinish: function (e) {
     this.setData({
       multiIndexFinish: e.detail.value
@@ -87,16 +116,38 @@ Page({
     this.setData({
       timeReverse: timeReverseLocal
     })
+    if (timeReverseLocal) {
+      wx.showToast({
+        title: '开始时间必须早于结束时间',
+        icon: 'none',
+        duration: 3000
+      })
+    }
+    else {
+      //考察是否时间过长
+      var endHour = this.data.objectMultiArray[0][this.data.multiIndexStart[0]].num + 3;
+      var endMinute = this.data.objectMultiArray[1][this.data.multiIndexStart[1]].num;
+      if (!((this.data.objectMultiArray[0][this.data.multiIndexFinish[0]].num < endHour) || (
+        this.data.objectMultiArray[0][this.data.multiIndexFinish[0]].num == endHour && this.data.objectMultiArray[1][this.data.multiIndexFinish[1]].num <= endMinute))) {
+        this.setData({
+          timeTooLong: true
+        })
+        wx.showToast({
+          title: '预约时长不得超过3小时',
+          icon: 'none',
+          duration: 3000
+        })
+      }
+      else {
+        this.setData({
+          timeTooLong: false
+        })
+      }
+    }
   },
 
   //日期选择器绑定的函数
-  bindDateChange: function(e) {
-    this.setData({
-      date: e.detail.value
-    })
-  },
-
-  bindDateChange2: function (e) {
+  bindDateChange: function (e) {
     console.log(e)
     this.setData({
       dateIndex: e.detail.value
@@ -119,19 +170,18 @@ Page({
 
   //提交表单
   checkAndSubmit: function() {
-    console.log('will check')
-    //能进入这个函数，说明一定勾选了。要检查房间有无空闲、预约者的权限（还有吗？）
     //申请预约
     var that = this
-    console.log(that)
-    console.log(that.data.roomid)
-    console.log(that.data.roomname)
+    console.log('roomid',that.data.roomid)
+    console.log('roomname',that.data.roomname)
+    console.log('Astart', that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexStart[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexStart[1]].id + ':00')
+    console.log('Afinish', that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexFinish[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexFinish[1]].id + ':00')
     wx.request({
       url: 'http://39.107.70.176:9000/appointment/add-appoint',
       method: 'POST',
       data: {
-        'Astart': that.data.date + ' ' + that.data.startTime + ':00',
-        'Afinish': that.data.date + ' ' + that.data.endTime + ':00',
+        'Astart': that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexStart[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexStart[1]].id + ':00',
+        'Afinish': that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexFinish[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexFinish[1]].id + ':00',
         'Ausage': that.data.iusage,
         'Rid': that.data.roomid,
         'Rtitle': that.data.roomname,
@@ -150,9 +200,7 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  /*生命周期函数--监听页面加载*/
   onLoad: function(options) {
     //设置全局数据
     this.setData({
@@ -209,20 +257,22 @@ Page({
       monthArray.push(nowMonth);
       dayArray.push(nowDay);
     }
+    var monthStr = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+    var dayStr = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
     this.setData({
-      'dateArray[0].id': yearArray[0] + '-' + monthArray[0] + '-' + dayArray[0],
+      'dateArray[0].id': yearArray[0] + '-' + monthStr[monthArray[0]] + '-' + dayStr[dayArray[0]],
       'dateArray[0].name': monthArray[0] + '月' + dayArray[0] + '日',
-      'dateArray[1].id': yearArray[1] + '-' + monthArray[1] + '-' + dayArray[1],
+      'dateArray[1].id': yearArray[1] + '-' + monthStr[monthArray[1]] + '-' + dayStr[dayArray[1]],
       'dateArray[1].name': monthArray[1] + '月' + dayArray[1] + '日',
-      'dateArray[2].id': yearArray[2] + '-' + monthArray[2] + '-' + dayArray[2],
+      'dateArray[2].id': yearArray[2] + '-' + monthStr[monthArray[2]] + '-' + dayStr[dayArray[2]],
       'dateArray[2].name': monthArray[2] + '月' + dayArray[2] + '日',
-      'dateArray[3].id': yearArray[3] + '-' + monthArray[3] + '-' + dayArray[3],
+      'dateArray[3].id': yearArray[3] + '-' + monthStr[monthArray[3]] + '-' + dayStr[dayArray[3]],
       'dateArray[3].name': monthArray[3] + '月' + dayArray[3] + '日',
-      'dateArray[4].id': yearArray[4] + '-' + monthArray[4] + '-' + dayArray[4],
+      'dateArray[4].id': yearArray[4] + '-' + monthStr[monthArray[4]] + '-' + dayStr[dayArray[4]],
       'dateArray[4].name': monthArray[4] + '月' + dayArray[4] + '日',
-      'dateArray[5].id': yearArray[5] + '-' + monthArray[5] + '-' + dayArray[5],
+      'dateArray[5].id': yearArray[5] + '-' + monthStr[monthArray[5]] + '-' + dayStr[dayArray[5]],
       'dateArray[5].name': monthArray[5] + '月' + dayArray[5] + '日',
-      'dateArray[6].id': yearArray[6] + '-' + monthArray[6] + '-' + dayArray[6],
+      'dateArray[6].id': yearArray[6] + '-' + monthStr[monthArray[6]] + '-' + dayStr[dayArray[6]],
       'dateArray[6].name': monthArray[6] + '月' + dayArray[6] + '日',
     })
   },
