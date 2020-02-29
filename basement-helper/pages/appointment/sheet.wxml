@@ -23,6 +23,7 @@
   <view class="weui-cells__title">时间</view>
   <view class="weui-cells weui-cells_after-title">
 
+    <!--
     <view class="weui-cell ">
       <view class="weui-cell__hd">
         <view class="weui-label">预约日期</view>
@@ -33,6 +34,17 @@
         </picker>
       </view>
     </view>
+    -->
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">预约日期</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="selector" value="{{dateIndex}}" range="{{dateArray}}" range-key="{{'name'}}" bindchange="bindDateChange2">
+          <view class="weui-input">{{dateArray[dateIndex].name}}</view>
+        </picker>
+      </view>
+    </view>
 
     <view class="weui-cell ">
       <view class="weui-cell__hd">
@@ -40,7 +52,7 @@
       </view>
       <view class="weui-cell__bd">
         <picker mode="multiSelector" bindchange="bindMultiPickerChangeStart" value="{{multiIndexStart}}" range="{{objectMultiArray}}" range-key="{{'name'}}">
-          <view class="picker">{{objectMultiArray[0][multiIndexStart[0]].name}}时{{objectMultiArray[1][multiIndexStart[1]].name}}分</view>
+          <view class="picker">{{objectMultiArray[0][multiIndexStart[0]].name}}{{objectMultiArray[1][multiIndexStart[1]].name}}</view>
         </picker>
       </view>
     </view>
@@ -51,7 +63,7 @@
       </view>
       <view class="weui-cell__bd">
         <picker mode="multiSelector" bindchange="bindMultiPickerChangeFinish" value="{{multiIndexFinish}}" range="{{objectMultiArray}}" range-key="{{'name'}}">
-          <view class="picker">{{objectMultiArray[0][multiIndexFinish[0]].name}}时{{objectMultiArray[1][multiIndexFinish[1]].name}}分</view>
+          <view class="picker">{{objectMultiArray[0][multiIndexFinish[0]].name}}{{objectMultiArray[1][multiIndexFinish[1]].name}}</view>
         </picker>
       </view>
     </view>
