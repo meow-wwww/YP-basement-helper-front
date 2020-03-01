@@ -10,17 +10,35 @@ Page({
   },
 
   cancelAppointment:function(options){
-    wx.showToast({
-      title: '已取消预约',
-      icon: 'success',
-      duration: 3000
+    var that = this
+    wx.request({
+      url: 'http://39.107.70.176:9000/appointment/cancel-appoint',
+      method: 'POST',
+      data: {
+        'Aid': this.data.me.appointmentlist.data[d.delindex].Aid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      dataType: 'json',
+      success: function (res) {
+        console.log(that.data)
+        wx.showToast({
+          title: '已取消预约',
+          icon: 'success',
+          duration: 3000
+        })
+        var d = options.currentTarget.dataset
+        that.data.me.appointmentlist.data.splice(d.delindex, 1)
+        app.globalData.me.appointmentlist.data = that.data.me.appointmentlist.data
+        that.setData({
+          me: app.globalData.me
+        })
+
+      }
     })
-    var d = options.currentTarget.dataset
-    this.data.me.appointmentlist.data.splice(d.delindex, 1)    
-    app.globalData.me.appointmentlist.data = this.data.me.appointmentlist.data
-    this.setData({
-      me: app.globalData.me
-    })
+
+    
   },
 
   /**
