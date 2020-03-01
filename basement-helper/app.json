@@ -10,7 +10,8 @@
     "pages/study-hall/study-hall",
     "pages/logs/logs",
     "pages/rules/rules",
-    "pages/myall/myall"
+    "pages/myall/myall",
+    "pages/appointment/success"
   ],
   "tabBar": {
     "color": "#666",

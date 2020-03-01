@@ -1,0 +1,5 @@
+/* pages/appointment/success.wxss */
+page{
+    background-color: #FFFFFF;
+}
+page,.page{height:100%;}

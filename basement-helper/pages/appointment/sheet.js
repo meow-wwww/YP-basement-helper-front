@@ -168,6 +168,14 @@ Page({
     });
   },
 
+  // 跳转预约成功页面
+  successPage: function() {
+    var d = options.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/appointment/success?id=' + d.paraid + '&name=' + encodeURI(d.paraname),
+    })
+  },
+
   //提交表单
   checkAndSubmit: function() {
     //申请预约
@@ -200,7 +208,8 @@ Page({
         console.log(res)
 
         // 处理服务器返回的错误信息
-        var errMessage = res.data.statusInfo
+        var errMessage = res.data.statusInfo.message
+        // 发生错误时 
         if (errMessage.length) {
           // 弹窗提示
           wx.showModal({
@@ -217,6 +226,11 @@ Page({
               }
             }
           });
+        }
+        // 预约成功时
+        else {
+          // 跳转预约成功页面
+          successPage()
         }
       }
     }
