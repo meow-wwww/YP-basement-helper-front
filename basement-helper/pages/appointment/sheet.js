@@ -52,7 +52,7 @@ Page({
     ],
     multiIndexStart: [0, 0],
     multiIndexFinish: [0, 0],
-    timeReverse:true,//开始时间>=结束时间？//仅用于按钮的disable
+    timeReverse: true,//开始时间>=结束时间？//仅用于按钮的disable
     timeTooLong: false,//预约时长>3h?//仅用于按钮的disable
   },
 
@@ -172,6 +172,7 @@ Page({
   checkAndSubmit: function() {
     //申请预约
     var that = this
+
     console.log('roomid',that.data.roomid)
     console.log('roomname',that.data.roomname)
     console.log('Astart', that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexStart[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexStart[1]].id + ':00')
@@ -187,12 +188,8 @@ Page({
         'Rid': that.data.roomid,
         'Rtitle': that.data.roomname,
         'students': [{
-          /*
           'Sid': app.globalData.me.id,
           'Sname': app.globalData.me.name
-          */
-          'Sid': '1800017830',
-          'Sname': '王霄钰'
         }]
       },
       header: {
@@ -201,6 +198,26 @@ Page({
       dataType: 'json',
       success: function (res) {
         console.log(res)
+
+        // 处理服务器返回的错误信息
+        var errMessage = res.data.statusInfo
+        if (errMessage.length) {
+          // 弹窗提示
+          wx.showModal({
+            title: '预约失败',
+            content: 'Oooops... 你预约失败了：' + errMessage + '！ 请检查输入的信息，重新预约！',
+            confirmText: "好的",
+            cancelText: "知道了",
+            success: function (res) {
+              console.log(res);
+              if (res.confirm) {
+                // console.log('用户点击主操作')
+              } else {
+                // console.log('用户点击辅助操作')
+              }
+            }
+          });
+        }
       }
     }
     console.log(postMessage)
