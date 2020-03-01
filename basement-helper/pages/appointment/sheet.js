@@ -176,7 +176,8 @@ Page({
     console.log('roomname',that.data.roomname)
     console.log('Astart', that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexStart[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexStart[1]].id + ':00')
     console.log('Afinish', that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexFinish[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexFinish[1]].id + ':00')
-    wx.request({
+
+    var postMessage = {
       url: 'http://39.107.70.176:9000/appointment/add-appoint',
       method: 'POST',
       data: {
@@ -186,18 +187,24 @@ Page({
         'Rid': that.data.roomid,
         'Rtitle': that.data.roomname,
         'students': [{
+          /*
           'Sid': app.globalData.me.id,
           'Sname': app.globalData.me.name
+          */
+          'Sid': '1800017830',
+          'Sname': '王霄钰'
         }]
       },
       header: {
         'content-type': 'application/json'
       },
       dataType: 'json',
-      success: function(res) {
+      success: function (res) {
         console.log(res)
       }
-    })
+    }
+    console.log(postMessage)
+    wx.request(postMessage)
   },
 
   /*生命周期函数--监听页面加载*/
