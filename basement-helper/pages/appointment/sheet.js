@@ -16,6 +16,7 @@ Page({
       day: new Date().getDate()//日
     },
     iusage: '',//输入的用途
+    isTimeValid: false, // 用于填写时间后实时显示是否可以预约
 
     dateArray:[//id没啥用
       { id: 1, name: '' },
@@ -69,14 +70,23 @@ Page({
         timeReverseLocal = true;
     }
     this.setData({
-      timeReverse:timeReverseLocal
+      timeReverse: timeReverseLocal
     })
     if(timeReverseLocal){
+      // 由于用户初次操作90%会先改开始时间，导致此错误几乎一定发生。我们索性不提示，直接帮用户改过来算了...
+      /* 
       wx.showToast({
         title: '开始时间必须早于结束时间',
         icon:'none',
         duration:3000
       })
+      */
+
+      // 将结束时间自动调至设置的开始时间
+      this.setData({
+        multiIndexFinish: e.detail.value
+      })
+
     }
     else{
       //考察是否时间过长
@@ -91,6 +101,10 @@ Page({
           title: '预约时长不得超过3小时',
           icon: 'none',
           duration: 3000
+        })
+        // 将开始时间自动调至设置的结束时间-3h. 无需担心溢出.
+        this.setData({
+          multiIndexStart: [this.data.multiIndexFinish[0] - 3, e.detail.value[1]]
         })
       }
       else{
@@ -136,6 +150,10 @@ Page({
           title: '预约时长不得超过3小时',
           icon: 'none',
           duration: 3000
+        })
+        // 将结束时间自动调至设置的开始时间+3h. 同样无需担心溢出.
+        this.setData({
+          multiIndexFinish: [e.detail.value[0] + 3, e.detail.value[1]]
         })
       }
       else {
@@ -213,8 +231,8 @@ Page({
         if (errMessage.length) {
           // 弹窗提示
           wx.showModal({
-            title: '预约失败',
-            content: 'Oooops... 你预约失败了：' + errMessage + '！ 请检查输入的信息，重新预约！',
+            title: 'Oooops... 预约失败了',
+            content: errMessage,
             confirmText: "好的",
             cancelText: "知道了",
             success: function (res) {

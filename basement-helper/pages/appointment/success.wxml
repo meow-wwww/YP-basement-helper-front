@@ -6,7 +6,7 @@
         </view>
         <view class="weui-msg__text-area">
             <view class="weui-msg__title">预约成功</view>
-            <view class="weui-msg__desc">请按时赴约，并遵守 <navigator url="/pages/rules/rules" class="weui-agree__link">《地下室使用公约》</navigator> 。祝使用愉快 </view>
+            <view class="weui-msg__desc">请按时赴约，并遵守 <navigator url="/pages/rules/rules" class="weui-agree__link">《地下室使用公约》</navigator> 。可进入预约查询页面查看当前预约状态。祝使用愉快！ </view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">

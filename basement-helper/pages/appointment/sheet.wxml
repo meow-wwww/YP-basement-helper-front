@@ -59,6 +59,10 @@
   </view>
   <view class="weui-cells__tips">只能进行未来七天的预约</view>
 
+  <view class="weui-flex">
+      <view class="weui-flex__item"><view class="placeholder">weui</view></view>
+  </view>
+
   <view class="weui-cells__title"></view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell ">
