@@ -60,7 +60,7 @@
   <view class="weui-cells__tips">只能进行未来七天的预约</view>
 
   <view class="weui-flex">
-      <view class="weui-flex__item"><view class="placeholder">weui</view></view>
+    <view class="weui-flex__item"><view class="placeholder" style="background-color:{{statusBackgroundColor[checkValid]}};color:{{statusTextColor[checkValid]}};">{{statusText[checkValid]}}</view></view>
   </view>
 
   <view class="weui-cells__title"></view>

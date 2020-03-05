@@ -16,7 +16,15 @@ Page({
       day: new Date().getDate()//日
     },
     iusage: '',//输入的用途
-    isTimeValid: false, // 用于填写时间后实时显示是否可以预约
+
+    checkValid: 2, // 用于实时指示是否可以预约.0:尚未填写数据 1:不可预约 2:可以预约
+    statusBackgroundColor: [
+      'rgba(247, 247, 247, 0.925)', // 白色
+      'rgba(204, 29, 29, 0.849)', // 红色
+      'rgba(9, 165, 92, 0.877)'], // 绿色
+    statusTextColor: ['rgba(0, 0, 0, 0.4)', 'rgba(255, 255, 255, 0.849)', 'rgba(255, 255, 255, 0.849)'],
+    statusText: ['', '该时段房间已被占用', '该时段房间空闲'],
+
 
     dateArray:[//id没啥用
       { id: 1, name: '' },
@@ -192,6 +200,11 @@ Page({
     wx.navigateTo({
       url: '/pages/appointment/success?id=' + d.paraid + '&name=' + encodeURI(d.paraname),
     })
+  },
+
+  // 填好信息后实时查询状态
+  checkRoomStatus: function() {
+    
   },
 
   //提交表单
