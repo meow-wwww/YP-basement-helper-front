@@ -11,13 +11,22 @@ Page({
   },
   Topage:function()
   {
-    app.globalData.me.id = 'done'
+    // app.globalData.me.id = 'done'
+    console.log('done')
+    
     wx.navigateBack()
   },
+
+  // 点击“登陆”按钮时
   Getsubmit: function(e) {
     var val=e.detail.value;
     console.log('user',val);
+
+    app.globalData.me.name = val.Getname
+    app.globalData.me.id = val.Getnumber
   },
+
+  // 点击“微信登陆”按钮时
   Getuser:function()
   {
     wx.getUserInfo({
