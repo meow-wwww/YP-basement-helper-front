@@ -49,6 +49,26 @@ Page({
   },
 
   onShow: function () {
+    //index页面每次显示的时候都要自动获取新的预约信息 并同步更新全局变量和本地变量    
+    //根据学号获取预约信息
+    var that = this
+    console.log('request id:',app.globalData.me.id)
+    wx.request({
+      url: 'http://39.107.70.176:9000/appointment/get-student',
+      method: 'POST',
+      data: {
+        'Sid':app.globalData.me.id
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        app.globalData.me.appointmentlist = res.data
+        console.log('get-student success')
+      }
+    })
+
+//用全局变量更新本地变量
     this.setData({
       me: app.globalData.me
     })

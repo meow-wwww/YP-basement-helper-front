@@ -212,11 +212,6 @@ Page({
     //申请预约
     var that = this
 
-    console.log('roomid',that.data.roomid)
-    console.log('roomname',that.data.roomname)
-    console.log('Astart', that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexStart[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexStart[1]].id + ':00')
-    console.log('Afinish', that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexFinish[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexFinish[1]].id + ':00')
-
     var postMessage = {
       url: 'http://39.107.70.176:9000/appointment/add-appoint',
       method: 'POST',
