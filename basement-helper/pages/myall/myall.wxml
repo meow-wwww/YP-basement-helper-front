@@ -1,31 +1,47 @@
 <!--pages/myall/myall.wxml-->
 <view class="page">
-  <view class="page__bd">
-    <view class="weui-form-preview" wx:for="{{me.appointmentlist.data}}">
-      <view class="weui-form-preview__bd">
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">房间</view>
-          <view class="weui-form-preview__value">{{item.Rtitle}}</view>
-        </view>
-<!--      <view class="weui-form-preview__item">
+
+  <view class="page__hd" wx:if="{{me.appointmentlist.data.length==0}}">
+    <view class="weui-cells__title">
+      <icon type="info_circle" size="17"></icon>
+      <text>你目前无预约信息</text>
+    </view>
+  </view>
+
+  <view wx:else>
+    <view class="page__bd">
+      <view class="weui-form-preview" wx:for="{{me.appointmentlist.data}}">
+        <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">房间</view>
+            <view class="weui-form-preview__value">{{item.Rtitle}}</view>
+          </view>
+          <!--      
+          <view class="weui-form-preview__item">
           <view class="weui-form-preview__label">日期</view>
           <view class="weui-form-preview__value">{{item.date}}</view>
-        </view> -->
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">开始时间</view>
-          <view class="weui-form-preview__value">{{item.Astart}}</view>
+          </view> 
+          -->
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">开始时间</view>
+            <view class="weui-form-preview__value">{{item.Astart}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">结束时间</view>
+            <view class="weui-form-preview__value">{{item.Afinish}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">用途</view>
+            <view class="weui-form-preview__value">{{item.Ausage}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">状态</view>
+            <view class="weui-form-preview__value">{{item.Astatus}}</view>
+          </view>
         </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">结束时间</view>
-          <view class="weui-form-preview__value">{{item.Afinish}}</view>
+        <view class="weui-form-preview__ft">
+          <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="cancelAppointment" data-delindex="{{index}}" disabled="{{item.Astatus=='Canceled'}}">取消预约</button>
         </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">用途</view>
-          <view class="weui-form-preview__value">{{item.Ausage}}</view>
-        </view>
-      </view>
-      <view class="weui-form-preview__ft">
-        <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="cancelAppointment" data-delindex="{{index}}">取消预约</button>
       </view>
     </view>
   </view>

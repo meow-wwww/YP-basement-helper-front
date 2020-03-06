@@ -11,6 +11,7 @@ Page({
 
   cancelAppointment:function(options){
     var that = this
+    var d = options.currentTarget.dataset
     wx.request({
       url: 'http://39.107.70.176:9000/appointment/cancel-appoint',
       method: 'POST',
@@ -28,11 +29,12 @@ Page({
           icon: 'success',
           duration: 3000
         })
-        var d = options.currentTarget.dataset
-        that.data.me.appointmentlist.data.splice(d.delindex, 1)
-        app.globalData.me.appointmentlist.data = that.data.me.appointmentlist.data
+
+        var tempme=that.data.me
+        console.log('tempme',tempme)
+        tempme.appointmentlist.data[d.delindex].Astatus='Canceled'
         that.setData({
-          me: app.globalData.me
+          me: tempme//似乎不太好？
         })
 
       }

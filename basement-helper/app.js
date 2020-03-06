@@ -8,7 +8,6 @@ App({
 
     //根据学号获取预约信息
     var that = this
-    var temp ={}
     wx.request({
       url: 'http://39.107.70.176:9000/appointment/get-student',
       method:'POST',
