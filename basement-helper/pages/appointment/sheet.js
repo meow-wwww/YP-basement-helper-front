@@ -17,6 +17,8 @@ Page({
     },
     iusage: '',//输入的用途
 
+    recvSubmitStatus: {}, // 提交后从服务器取得的信息
+
     checkValid: 2, // 用于实时指示是否可以预约.0:尚未填写数据 1:不可预约 2:可以预约
     statusBackgroundColor: [
       'rgba(247, 247, 247, 0.925)', // 白色
@@ -112,7 +114,8 @@ Page({
         })
         // 将开始时间自动调至设置的结束时间-3h. 无需担心溢出.
         this.setData({
-          multiIndexStart: [this.data.multiIndexFinish[0] - 3, e.detail.value[1]]
+          multiIndexStart: [this.data.multiIndexFinish[0] - 3, this.data.multiIndexFinish[1]],
+          timeTooLong: false
         })
       }
       else{
@@ -144,6 +147,10 @@ Page({
         icon: 'none',
         duration: 3000
       })
+      // 将开始时间自动调至设置的结束时间
+      this.setData({
+        multiIndexStart: e.detail.value
+      })
     }
     else {
       //考察是否时间过长
@@ -161,7 +168,8 @@ Page({
         })
         // 将结束时间自动调至设置的开始时间+3h. 同样无需担心溢出.
         this.setData({
-          multiIndexFinish: [e.detail.value[0] + 3, e.detail.value[1]]
+          multiIndexFinish: [this.data.multiIndexStart[0] + 3, this.data.multiIndexStart[1]],
+          timeTooLong:false
         })
       }
       else {
@@ -194,17 +202,17 @@ Page({
     });
   },
 
-  // 跳转预约成功页面
-  successPage: function() {
-    var d = options.currentTarget.dataset;
-    wx.navigateTo({
-      url: '/pages/appointment/success?id=' + d.paraid + '&name=' + encodeURI(d.paraname),
-    })
-  },
-
   // 填好信息后实时查询状态
   checkRoomStatus: function() {
     
+  },
+
+  // 跳转预约成功页面
+  successPage: function(options) {
+    // var d = options.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/appointment/success?',
+    })
   },
 
   //提交表单
@@ -212,7 +220,7 @@ Page({
     //申请预约
     var that = this
 
-    var postMessage = {
+    wx.request({
       url: 'http://39.107.70.176:9000/appointment/add-appoint',
       method: 'POST',
       data: {
@@ -230,38 +238,43 @@ Page({
         'content-type': 'application/json'
       },
       dataType: 'json',
+      async: false, // 停止异步改为同步方式，可等待res返回
       success: function (res) {
-        console.log(res)
+        console.log(res.data);
+        that.setData({recvSubmitStatus: res.data}) //需要暂存到全局变量里
+      }
+    });
 
-        // 处理服务器返回的错误信息
-        var errMessage = res.data.statusInfo.message
-        // 发生错误时 
-        if (errMessage.length) {
-          // 弹窗提示
-          wx.showModal({
-            title: 'Oooops... 预约失败了',
-            content: errMessage,
-            confirmText: "好的",
-            cancelText: "知道了",
-            success: function (res) {
-              console.log(res);
-              if (res.confirm) {
-                // console.log('用户点击主操作')
-              } else {
-                // console.log('用户点击辅助操作')
-              }
+    // 处理服务器返回的信息
+    console.log(that.data.recvSubmitStatus)
+
+    if (!that.data.recvSubmitStatus.hasOwnProperty("statusInfo")) {
+      // 预约成功时, 返回的json不包含上述键
+      // 跳转预约成功页面
+      that.successPage({})
+    }
+
+    else {
+      // 发生错误时
+      var errMessage = that.data.recvSubmitStatus.statusInfo.message
+      if (errMessage.length) {
+        // 弹窗提示
+        wx.showModal({
+          title: 'Oooops... 预约失败了',
+          content: errMessage,
+          confirmText: "好的",
+          cancelText: "知道了",
+          success: function (res) {
+            // console.log(res);
+            if (res.confirm) {
+              // console.log('用户点击主操作')
+            } else {
+              // console.log('用户点击辅助操作')
             }
-          });
-        }
-        // 预约成功时
-        else {
-          // 跳转预约成功页面
-          successPage()
-        }
+          }
+        });
       }
     }
-    console.log(postMessage)
-    wx.request(postMessage)
   },
 
   /*生命周期函数--监听页面加载*/

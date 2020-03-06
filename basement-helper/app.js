@@ -53,7 +53,8 @@ App({
     me:{//用户信息
       name:'',
       id:null,
-      appointmentlist:{}//预约列表
+      appointmentlist:{},//预约列表
+      //tempRecvData:{}//暂存服务器返回的信息，暂时不需要了
     }
   }
 })
