@@ -14,7 +14,9 @@ Page({
     // app.globalData.me.id = 'done'
     console.log('done')
     
-    wx.navigateBack()
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
   },
 
   // 点击“登陆”按钮时

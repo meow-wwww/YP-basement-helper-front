@@ -64,13 +64,11 @@ Page({
       },
       success: function (res) {
         app.globalData.me.appointmentlist = res.data
-        console.log('get-student success')
+        //用全局变量更新本地变量
+        that.setData({
+          me: app.globalData.me
+        })
       }
-    })
-
-//用全局变量更新本地变量
-    this.setData({
-      me: app.globalData.me
     })
   },
 
