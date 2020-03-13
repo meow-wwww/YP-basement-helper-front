@@ -21,22 +21,33 @@ Page({
    */
   onLoad: function(options) {
     var that = this
-    //获取房间
-    wx.request({
-      url: 'http://39.107.70.176:9000/appointment/get-room',
-      method: 'GET',
-      data: null,
-      header: {
-        'content-type': 'application/json'
-      },
-      dataType: 'json',
-      success: function(res) {
-        that.setData({
-          namelist: res.data
-        })
-        console.log(that.data)
-      }
+
+    // 向服务器进行同步请求，而不是异步请求
+    var getData = new Promise(function (resolve, reject) {
+      //获取房间
+      wx.request({
+        url: 'http://39.107.70.176:9000/appointment/get-room',
+        method: 'GET',
+        data: null,
+        header: {
+          'content-type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (res) {
+          resolve(res.data) // 成功后调用回调函数then
+        }
+      })
     })
+
+    // 定义取得数据后的回调函数then
+    getData.then(function (data) {
+      that.setData({
+        namelist: data
+      })
+      console.log(that.data)
+
+    })
+    
   },
 
   /**

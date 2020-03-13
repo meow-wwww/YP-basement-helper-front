@@ -34,22 +34,31 @@ Page({
     })
 
     var that = this
-    // 获取当前房间预约信息
-    wx.request({
-      url: 'http://39.107.70.176:9000/appointment/get-room',
-      method: 'POST',
-      data: {Rid: that.data.roomid},
-      header: {
-        'content-type': 'application/json'
-      },
-      dataType: 'json',
-      async: false, // 同步模式
-      success: function (res) {
-        that.setData({
-          recvRoomStatus: res.data
-        })
-        console.log(res)
-      }
+
+    // 向服务器进行同步请求，而不是异步请求
+    var getData = new Promise(function (resolve, reject) {
+      // 获取当前房间预约信息
+      wx.request({
+        url: 'http://39.107.70.176:9000/appointment/get-room',
+        method: 'POST',
+        data: {Rid: that.data.roomid},
+        header: {
+          'content-type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (res) {
+          resolve(res.data)
+        }
+      })
+    })
+
+    // 定义取得数据后的回调函数then
+    getData.then(function (data) {
+      that.setData({
+        recvRoomStatus: data
+      })
+      console.log(data)
+
     })
 
   },
