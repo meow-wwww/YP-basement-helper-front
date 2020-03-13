@@ -2,7 +2,7 @@
 <view class="weui-cells__title">{{roomid}} {{roomname}}</view>
 <view class="weui-cells__title"></view>
 
-<button class="weui-btn" type="primary" bindtap="fillTheSheet" data-paraid="{{roomid}}" data-paraname="{{roomname}}">预约此房间</button>
+<button class="weui-btn" type="primary" bindtap="fillTheSheet" data-parastatus="{{recvStatus}}" data-paraid="{{roomid}}" data-paraname="{{roomname}}">预约此房间</button>
 
 <view class="weui-cells__title">预约时间表</view>
 <view class="table_head">

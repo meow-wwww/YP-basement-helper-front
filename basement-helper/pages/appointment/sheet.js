@@ -6,15 +6,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 这4项是从前一页继承下来的数据
     roomname: '',
     roomid: '',
-    isAgree: false,
     me: {},
+    roomstatus: {},
+
     today: {
       year: new Date().getFullYear(),// 年
       month: new Date().getMonth() + 1,//月
       day: new Date().getDate()//日
     },
+    isAgree: false, // ‘同意公约’确认框状态
     iusage: '',//输入的用途
 
     recvSubmitStatus: {}, // 提交后从服务器取得的信息
@@ -283,7 +286,8 @@ Page({
     this.setData({
       roomname: decodeURI(options.name),
       roomid: options.id,
-      me: app.globalData.me
+      me: app.globalData.me,
+      roomstatus: decodeURI(options.status)
     })
     //初始化日期选择器
     var nowYear=this.data.today.year
