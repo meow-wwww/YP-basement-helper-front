@@ -223,61 +223,81 @@ Page({
     //申请预约
     var that = this
 
-    wx.request({
-      url: 'http://39.107.70.176:9000/appointment/add-appoint',
-      method: 'POST',
-      data: {
-        'Astart': that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexStart[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexStart[1]].id + ':00',
-        'Afinish': that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexFinish[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexFinish[1]].id + ':00',
-        'Ausage': that.data.iusage,
-        'Rid': that.data.roomid,
-        'Rtitle': that.data.roomname,
-        'students': [{
-          'Sid': app.globalData.me.id,
-          'Sname': app.globalData.me.name
-        }]
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      dataType: 'json',
-      async: false, // 停止异步改为同步方式，可等待res返回
-      success: function (res) {
-        console.log(res.data);
-        that.setData({recvSubmitStatus: res.data}) //需要暂存到全局变量里
-      }
-    });
-
-    // 处理服务器返回的信息
-    console.log(that.data.recvSubmitStatus)
-
-    if (!that.data.recvSubmitStatus.hasOwnProperty("statusInfo")) {
-      // 预约成功时, 返回的json不包含上述键
-      // 跳转预约成功页面
-      that.successPage({})
-    }
-
-    else {
-      // 发生错误时
-      var errMessage = that.data.recvSubmitStatus.statusInfo.message
-      if (errMessage.length) {
-        // 弹窗提示
-        wx.showModal({
-          title: 'Oooops... 预约失败了',
-          content: errMessage,
-          confirmText: "好的",
-          cancelText: "知道了",
-          success: function (res) {
-            // console.log(res);
-            if (res.confirm) {
-              // console.log('用户点击主操作')
-            } else {
-              // console.log('用户点击辅助操作')
+    // 向服务器进行同步请求，而不是异步请求
+    var getData = new Promise(function (resolve, reject) {
+          wx.request({
+            url: 'http://39.107.70.176:9000/appointment/add-appoint',
+            method: 'POST',
+            data: {
+              'Astart': that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexStart[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexStart[1]].id + ':00',
+              'Afinish': that.data.dateArray[that.data.dateIndex].id + ' ' + that.data.objectMultiArray[0][that.data.multiIndexFinish[0]].id + ':' + that.data.objectMultiArray[1][that.data.multiIndexFinish[1]].id + ':00',
+              'Ausage': that.data.iusage,
+              'Rid': that.data.roomid,
+              'Rtitle': that.data.roomname,
+              'students': [{
+                'Sid': app.globalData.me.id,
+                'Sname': app.globalData.me.name
+              }]
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            dataType: 'json',
+            // async: false, // 微信小程序不支持直接async...
+            success: function (res) {
+              // console.log(res.data)
+              resolve(res.data) // 取得数据后resolve()，自动调用then回调函数进行下一步处理
             }
-          }
-        });
+          });
+        })
+    
+    // 定义取得数据后的回调函数then
+    getData.then(function (data) {
+
+      // 将取得的数据存为本地变量
+      that.setData({ recvSubmitStatus: data })
+
+      // 处理服务器返回的信息
+      console.log(that.data.recvSubmitStatus)
+
+      if (!that.data.recvSubmitStatus.hasOwnProperty("statusInfo")) {
+        // 预约成功时, 返回的json不包含上述键
+        // 跳转预约成功页面
+        that.successPage({})
       }
+
+      else {
+        // 发生错误时
+        var errMessage = that.data.recvSubmitStatus.statusInfo.message
+        if (errMessage.length) {
+          // 弹窗提示
+          wx.showModal({
+            title: 'Oooops... 预约失败了',
+            content: errMessage,
+            confirmText: "好的",
+            cancelText: "知道了",
+            success: function (res) {
+              // console.log(res);
+              if (res.confirm) {
+                // console.log('用户点击主操作')
+              } else {
+                // console.log('用户点击辅助操作')
+              }
+            }
+          });
+        }
+      }
+    })
+
+
+    /*
+    // 等待服务器返回数据--这是不用Promise进行伪同步操作的替代方案，有卡死的风险。
+    while (that.data.recvSubmitStatus=={}) {
+        // just wait
+        console.log("waiting...")
     }
+    */
+
   },
 
   /*生命周期函数--监听页面加载*/
