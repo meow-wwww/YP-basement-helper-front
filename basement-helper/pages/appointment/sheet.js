@@ -316,6 +316,7 @@ Page({
     var yearArray = [];
     var monthArray = [];
     var dayArray = [];
+    yearArray.push(nowYear)//new added
     monthArray.push(nowMonth)
     dayArray.push(nowDay)
     for (var i = 1; i <= 6; i++) {

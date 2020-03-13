@@ -7,19 +7,14 @@
 <view class="weui-cells__title">预约时间表</view>
 <view class="table_head">
   <view class="th th1">时间/星期</view>
-  <view class="th th2">日</view>
-  <view class="th th2">一</view>
-  <view class="th th2">二</view>
-  <view class="th th2">三</view>
-  <view class="th th2">四</view>
-  <view class="th th2">五</view>
-  <view class="th th2">六</view>
+  <view class="th th2" wx:for="{{tableDate}}">{{tableDate[index]}}</view><!--日一二三四五六-->
 </view>
-<view class="table_head" wx:for="{{29}}">
-  <view class="td td1"></view>
+
+<view class="table_head" wx:for="{{56}}">
+  <view class="td td1" style="font-size:30rpx">{{tableTime[index]}}</view><!--时间块-->
   <view class="td tdr2"></view>
   <view class="td tdr2"></view>
-  <view class="td tdl2"></view>
+  <view class="{{redClass}}"></view>
   <view class="td tdr2"></view>
   <view class="td tdr2"></view>
   <view class="td tdr2"></view>

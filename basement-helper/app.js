@@ -5,24 +5,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-/*
-    //根据学号获取预约信息
-    var that = this
-    wx.request({
-      url: 'http://39.107.70.176:9000/appointment/get-student',
-      method:'POST',
-      data:{
-        'Sid':app.globalData.me.id
-      },
-      header:{
-        'content-type':'application/json'
-      },
-      success:function(res){
-        that.globalData.me.appointmentlist = res.data
-      }
-    })
-  */
   },
 
   onShow:function(){
@@ -55,6 +37,11 @@ App({
       id:null,
       appointmentlist:{},//预约列表
       //tempRecvData:{}//暂存服务器返回的信息，暂时不需要了
-    }
+    },
+    today: {
+      year: new Date().getFullYear(),// 年
+      month: new Date().getMonth() + 1,//月
+      day: new Date().getDate()//日
+    },
   }
 })

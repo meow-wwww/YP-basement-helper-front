@@ -4,7 +4,7 @@
 
 <view class="greet-wrap">
   <view class="textcard">
-    <view class="greeting">Hi，{{me.name}}</view>
+    <view class="greeting">Hi，{{me.name}} 现在是{{today.year}}年{{today.month}}月{{today.day}}日</view>
     <view>
       <text decode="{{true}}" class="inform-normal">&nbsp;&nbsp;&nbsp;&nbsp;你有</text>
       <text class="inform-mark">{{me.appointmentlist.data.length}}</text>
