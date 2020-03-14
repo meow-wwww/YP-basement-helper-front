@@ -15,7 +15,8 @@
     </view>
     <view wx:if="{{me.appointmentlist.data.length}}">
       <text decode="{{true}}" class="inform-normal">&nbsp;&nbsp;&nbsp;&nbsp;最近一条为    </text>
-      <text class="inform-mark">3月14日9:00-10:00大讨论室</text>
+      <text class="inform-mark">{{nextAppointTime}}</text>
+      <text class="inform-mark">{{nextAppointRoom}}</text>
     </view>
   </view>
 </view>
