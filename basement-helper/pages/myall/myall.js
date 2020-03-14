@@ -72,7 +72,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    //index页面每次显示的时候都要自动获取新的预约信息 并同步更新全局变量和本地变量    
+    //myall页面每次显示的时候都要自动获取新的预约信息 并同步更新全局变量和本地变量    
     //根据学号获取预约信息
     var that = this
     console.log('request id:', app.globalData.me.id)
