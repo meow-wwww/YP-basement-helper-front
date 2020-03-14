@@ -61,58 +61,68 @@ Page({
         },
         success: function(res) {
           resolve(res.data)
-          /*
-          app.globalData.me.appointmentlist = res.data
-          //用全局变量更新本地变量
-          that.setData({
-            me: app.globalData.me
-          })
-          */
         }
       })
     })
 
     getData.then(function(data){
-      app.globalData.me.appointmentlist=data
+      
+      //将全局变量中的数据进行筛选
+      var nowYear = app.globalData.today.year
+      var nowMonth = (app.globalData.today.month).toString().padStart(2, '0');
+      var nowDay = (app.globalData.today.day).toString().padStart(2, '0');
+      var tempDate=new Date()
+      var nowHour = (tempDate.getHours()).toString().padStart(2, '0');
+      var nowMinute = (tempDate.getMinutes()).toString().padStart(2, '0');
+      var nowSecond = (tempDate.getSeconds()).toString().padStart(2, '0');
+      var nowTimeStr=nowYear+'-'+nowMonth+'-'+nowDay+'T'+nowHour+':'+nowMinute+':'+nowSecond
+      
+      console.log('准备开始splice')
+      console.log(data)
+      for (var i = data.data.length-1;i>=0;i--){
+        console.log('i:', i)
+        if(data.data[i].Astart<=nowTimeStr){
+          data.data.splice(i,1)
+        }
+        console.log('now data:',data)
+      }
+      app.globalData.me.appointmentlist = data//将获取的预约信息返回给全局变量
+
       that.setData({
         me:app.globalData.me
       })
+
+      var appointList = app.globalData.me.appointmentlist.data
+      var nextApt
+      var nextAppointStr = ""
+      if (appointList.length) {
+        nextApt = appointList[0]
+        for (var i = 1; i < appointList.length; i++) { //!!!!!!
+          if (nextApt.Astart > appointList[i].Astart)
+            nextApt = appointList[i];
+        }
+        var ShowStr = ""
+        if (nextApt.Astart[5] == '1') {
+          ShowStr += '1'
+        }
+        ShowStr += nextApt.Astart[6]
+        ShowStr += "月"
+        if (nextApt.Astart[8] != '0') {
+          ShowStr += nextApt.Astart[8]
+        }
+        ShowStr += nextApt.Astart[9]
+        ShowStr += "日 "
+        ShowStr += nextApt.Astart.slice(11, 16)
+        ShowStr += "-"
+        ShowStr += nextApt.Afinish.slice(11, 16)
+        ShowStr += '\n'
+
+        that.setData({
+          nextAppointTime: ShowStr,
+          nextAppointRoom: nextApt.Rtitle
+        })
+      }
     })
-
-    console.log('global me',app.globalData.me)
-    console.log('local me',that.me)
-
-    var appointList = app.globalData.me.appointmentlist.data
-    var nextApt
-    var nextAppointStr = ""
-    if (appointList.length) {
-      nextApt = appointList[0]
-      for (var i = 1; i < appointList.length; i++) { //!!!!!!
-        if (nextApt.Astart > appointList[i].Astart)
-          nextApt = appointList[i];
-      }
-      var ShowStr = ""
-      if (nextApt.Astart[5] == '1') {
-        ShowStr += '1'
-      }
-      ShowStr += nextApt.Astart[6]
-      ShowStr += "月"
-      if (nextApt.Astart[8] != '0') {
-        ShowStr += nextApt.Astart[8]
-      }
-      ShowStr += nextApt.Astart[9]
-      ShowStr += "日 "
-      ShowStr += nextApt.Astart.slice(11, 16)
-      ShowStr += "-"
-      ShowStr += nextApt.Afinish.slice(11, 16)
-      ShowStr += '\n'
-
-      this.setData({
-        nextAppointTime: ShowStr,
-        nextAppointRoom: nextApt.Rtitle
-      })
-    }
-
   },
 
   onReady: function() {
