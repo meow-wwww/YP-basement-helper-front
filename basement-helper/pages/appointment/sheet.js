@@ -10,16 +10,12 @@ Page({
     roomname: '',
     roomid: '',
     me: {},
-    roomstatus: {}, // 当前房间的预约状态
+    roomstatus: {},
 
     today: {
       year: new Date().getFullYear(),// 年
       month: new Date().getMonth() + 1,//月
       day: new Date().getDate()//日
-    },
-    now: {
-      hour: new Date().getHours(),
-      minute: new Date().getMinutes()
     },
     isAgree: false, // ‘同意公约’确认框状态
     iusage: '',//输入的用途
@@ -381,29 +377,6 @@ Page({
       'dateArray[6].id': yearArray[6] + '-' + monthStr[monthArray[6]] + '-' + dayStr[dayArray[6]],
       'dateArray[6].name': monthArray[6] + '月' + dayArray[6] + '日',
     })
-
-    //初始化时间选择器
-    var indexHour = this.data.now.hour - 9
-    var nowMinute = this.data.now.minute
-    var indexMinute = 0 //0,1,2,3
-    var numMinute = 0 // 0,15,30,45
-    while (true) {
-      indexMinute++
-      numMinute += 15
-      if (numMinute > nowMinute) {
-        if (numMinute > 45 && indexHour < 13) { // 滚到下一小时00分
-          indexMinute = 0
-          numMinute = 0
-          indexHour++
-        }
-        break
-      }
-    }
-    this.setData({
-      multiIndexStart: [indexHour, indexMinute],
-      multiIndexFinish: [indexHour, indexMinute]
-    })
-
   },
   /*生命周期函数--监听页面初次渲染完成*/
   onReady: function() {
