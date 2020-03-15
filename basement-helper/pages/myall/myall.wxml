@@ -15,20 +15,14 @@
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label">房间</view>
             <view class="weui-form-preview__value">{{item.Rtitle}}</view>
-          </view>
-          <!--      
+          </view>   
           <view class="weui-form-preview__item">
           <view class="weui-form-preview__label">日期</view>
-          <view class="weui-form-preview__value">{{item.date}}</view>
+          <view class="weui-form-preview__value">{{item.Adate}}</view>
           </view> 
-          -->
           <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">开始时间</view>
-            <view class="weui-form-preview__value">{{item.Astart}}</view>
-          </view>
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">结束时间</view>
-            <view class="weui-form-preview__value">{{item.Afinish}}</view>
+            <view class="weui-form-preview__label">起止时间</view>
+            <view class="weui-form-preview__value">{{item.Astart}}-{{item.Afinish}}</view>
           </view>
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label">用途</view>
@@ -40,7 +34,7 @@
           </view>
         </view>
         <view class="weui-form-preview__ft">
-          <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="cancelAppointment" data-delindex="{{index}}" disabled="{{item.Astatus=='Canceled'}}">取消预约</button>
+          <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="cancelAppointment" data-delindex="{{index}}" disabled="{{item.Astatus!='Appointed'}}">取消预约</button>
         </view>
       </view>
     </view>

@@ -65,31 +65,22 @@ Page({
       })
     })
 
-    getData.then(function(data){
-      
+    getData.then(function(data) {
       //将全局变量中的数据进行筛选
       var nowYear = app.globalData.today.year
       var nowMonth = (app.globalData.today.month).toString().padStart(2, '0');
       var nowDay = (app.globalData.today.day).toString().padStart(2, '0');
-      var tempDate=new Date()
+      var tempDate = new Date()
       var nowHour = (tempDate.getHours()).toString().padStart(2, '0');
       var nowMinute = (tempDate.getMinutes()).toString().padStart(2, '0');
       var nowSecond = (tempDate.getSeconds()).toString().padStart(2, '0');
-      var nowTimeStr=nowYear+'-'+nowMonth+'-'+nowDay+'T'+nowHour+':'+nowMinute+':'+nowSecond
-      
-      console.log('准备开始splice')
-      console.log(data)
-      for (var i = data.data.length-1;i>=0;i--){
-        console.log('i:', i)
-        if(data.data[i].Astart<=nowTimeStr){
-          data.data.splice(i,1)
-        }
-        console.log('now data:',data)
-      }
-      app.globalData.me.appointmentlist = data//将获取的预约信息返回给全局变量
-
+      var nowTimeStr = nowYear + '-' + nowMonth + '-' + nowDay + 'T' + nowHour + ':' + nowMinute + ':' + nowSecond
+      for (var i = data.data.length - 1; i >= 0; i--)
+        if (data.data[i].Astart <= nowTimeStr || data.data[i].Astatus == 'Canceled')
+          data.data.splice(i, 1)
+      app.globalData.me.appointmentlist = data //将获取的预约信息返回给全局变量
       that.setData({
-        me:app.globalData.me
+        me: app.globalData.me
       })
 
       var appointList = app.globalData.me.appointmentlist.data
@@ -97,19 +88,16 @@ Page({
       var nextAppointStr = ""
       if (appointList.length) {
         nextApt = appointList[0]
-        for (var i = 1; i < appointList.length; i++) { //!!!!!!
+        for (var i = 1; i < appointList.length; i++)
           if (nextApt.Astart > appointList[i].Astart)
             nextApt = appointList[i];
-        }
         var ShowStr = ""
-        if (nextApt.Astart[5] == '1') {
+        if (nextApt.Astart[5] == '1')
           ShowStr += '1'
-        }
         ShowStr += nextApt.Astart[6]
         ShowStr += "月"
-        if (nextApt.Astart[8] != '0') {
+        if (nextApt.Astart[8] != '0')
           ShowStr += nextApt.Astart[8]
-        }
         ShowStr += nextApt.Astart[9]
         ShowStr += "日 "
         ShowStr += nextApt.Astart.slice(11, 16)

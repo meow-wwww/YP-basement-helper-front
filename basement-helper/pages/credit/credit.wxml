@@ -1,38 +1,36 @@
 <!--pages/credit/credit.wxml-->
 <view class="page">
-  <view class="page__hd">
-    <view class="weui-cells__title">你最近有2条违规记录</view>
-  </view>
-  <view class="page__bd">
-    <view class="weui-form-preview">
-      <view class="weui-form-preview__bd">
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">违规时间</view>
-          <view class="weui-form-preview__value">2020年1月5日</view>
-        </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">房间</view>
-          <view class="weui-form-preview__value">大讨论室</view>
-        </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">违规原因</view>
-          <view class="weui-form-preview__value">咕咕咕</view>
-        </view>
-      </view>
+  <view wx:if="{{violateList.length==0}}">
+    <view class="page__hd">
+      <view class="weui-cells__title">你最近没有违规记录</view>
     </view>
-    <view class="weui-form-preview">
-      <view class="weui-form-preview__bd">
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">违规时间</view>
-          <view class="weui-form-preview__value">2019年12月5日</view>
-        </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">房间</view>
-          <view class="weui-form-preview__value">小讨论室</view>
-        </view>
-        <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">违规原因</view>
-          <view class="weui-form-preview__value">咕咕咕</view>
+  </view>
+
+  <view wx:else>
+    <view class="page__hd">
+      <view class="weui-cells__title">你最近有{{violateList.length}}条违规记录</view>
+    </view>
+    <view class="page__bd">
+      <view class="weui-form-preview" wx:for="{{violateList}}">
+        <view class="weui-form-preview__bd">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">日期</view>
+            <view class="weui-form-preview__value">{{item.Adate}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">起止时间</view>
+            <view class="weui-form-preview__value">{{item.Astart}}-{{item.Afinish}}</view>
+          </view>
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">房间</view>
+            <view class="weui-form-preview__value">{{item.Rid}} {{item.Rtitle}}</view>
+          </view>
+          <!--
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">违规原因</view>
+            <view class="weui-form-preview__value">咕咕咕</view>
+          </view>
+          -->
         </view>
       </view>
     </view>
